@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GridBackgroundDemo } from "../components/background/GridBackgroundDemo";
 import ProjectCard from "../components/ProjectCard";
+import visiblewood from "../assets/visiblewood.png";
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -13,8 +14,17 @@ const Projects = () => {
 
       {/* Main content */}
       <div className="relative z-10">
+        <div className="flex items-center  mt-10 justify-between">
+          <div className="">
+            <img src={visiblewood} alt="" className="w-50 h-max" />
+            <p className="text-xl absolute top-23 left-9 font-bold font-[merriweather]">
+              Thomas Lenh
+            </p>
+          </div>
+          <div className="text-2xl h-max font-bold">phelllo </div>
+        </div>
         {/* Search bar */}
-        <div className="w-120 mx-auto mb-12 px-4">
+        <div className="w-130 mx-auto mt-4 px-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg

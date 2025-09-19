@@ -3,8 +3,10 @@ import uw from "../assets/uw.png";
 import scrible from "../assets/scrible.gif";
 import back from "../assets/backgroundwood.png";
 import front from "../assets/visiblewood.png";
+import banner from "../assets/banner.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { globalIgnores } from "eslint/config";
 
 const Profile = () => {
   const [isClicked, setIsClicked] = useState(true);
@@ -13,6 +15,7 @@ const Profile = () => {
   return (
     <div className="flex flex-col w-[750px] h-[600px] font-[Poppins] ">
       <div className="flex h-50 flex-col ">
+        <img className="w-90 h-full" src={banner} alt="" />
         <p className=" text-[#e6e1c1] pt-3 rounded-lg text-5xl mb-5 font-[Merriweather]">
           hi, im thomas!
         </p>

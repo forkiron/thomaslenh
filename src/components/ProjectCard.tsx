@@ -16,7 +16,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <div className={`flex flex-col items-center justify-center ${className}`}>
-      <img className="w-120 h-full" src={image} alt={title} />
+      <img className={`w-140 h-full`} src={image} alt={title} />
       <p className="absolute text-lg font-medium mt-4">{title}</p>
       {description && (
         <p className=" absolute text-sm text-gray-600 mt-20 text-center max-w-md">
