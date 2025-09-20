@@ -5,33 +5,34 @@ import back from "../assets/backgroundwood.png";
 import front from "../assets/visiblewood.png";
 import banner from "../assets/banner.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { globalIgnores } from "eslint/config";
 
-const Profile = () => {
+interface ProfileProps {
+  onShowProjects: () => void;
+}
+
+const Profile = ({ onShowProjects }: ProfileProps) => {
   const [isClicked, setIsClicked] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-[750px] h-[600px] font-[Poppins] ">
-      <div className="flex h-50 flex-col ">
-        <img className="w-90 h-full" src={banner} alt="" />
-        <p className=" text-[#e6e1c1] pt-3 rounded-lg text-5xl mb-5 font-[Merriweather]">
-          hi, im thomas!
-        </p>
-        <p className="text-lg text-white ">
-          i love finding creative ways to solve{" "}
-          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            {" "}
-            not-so-obvious{" "}
-          </span>{" "}
-          yet
-          <b className="bg-gradient-to-br from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
-            {" "}
-            widespread
-          </b>{" "}
-          problems
-        </p>
+      <div className="flex h-50 flex-col">
+        <div className="flex flex-col justify-center items-center">
+          <img
+            className="w-120 h-auto mx-auto mb-4"
+            src={banner}
+            alt="Banner"
+          />
+          <p
+            className=" absolute text-white pt-3 rounded-lg font-bold text-5xl mb-15"
+            style={{
+              fontFamily: "Pixelify Sans, monospace",
+              textShadow: "black 0px 0px 1px",
+            }}
+          >
+            hi, im thomas!
+          </p>
+        </div>
       </div>
       <div className="flex flex-col  gap-16 ">
         <div className="flex items-center   justify-between">
@@ -110,7 +111,7 @@ const Profile = () => {
           {/* Washi tape pieces - positioned outside sticky note to avoid clipping */}
         </div>
         <div>
-          <div className="w-100 h-20">
+          <div className="w-100 h-20 flex flex-col justify-center items-center">
             <img
               className={`absolute top-128 left-102 cursor-pointer transition-all duration-100 rotate-5 z-0 ${
                 isHovered ? "scale-105 left-103 top-129" : ""
@@ -127,6 +128,7 @@ const Profile = () => {
               alt=""
               style={{ width: "256px", height: "128px", objectFit: "cover" }}
               onMouseDown={() => setIsClicked(false)}
+              onClick={onShowProjects}
               onMouseUp={() => setIsClicked(true)}
               onMouseLeave={() => {
                 setIsClicked(true);
@@ -135,8 +137,14 @@ const Profile = () => {
               onMouseEnter={() => setIsHovered(true)}
             />
             <div
-              className="relative left-55 bottom-2 z-20 flex items-center justify-center h-full text-white font-[Poppins] font-semibold text-md cursor-pointer"
-              onClick={() => navigate("/projects")}
+              className={`relative mb-20 ml-113 z-20 flex cursor-pointer transition-all duration-100 items-center justify-center h-full text-white font-semibold text-4xl cursor-pointer ${
+                isHovered ? "scale-105" : ""
+              }`}
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 2px",
+              }}
+              onClick={onShowProjects}
               onMouseDown={() => setIsClicked(false)}
               onMouseUp={() => setIsClicked(true)}
               onMouseLeave={() => {
@@ -145,7 +153,7 @@ const Profile = () => {
               }}
               onMouseEnter={() => setIsHovered(true)}
             >
-              Projects
+              projects
             </div>
           </div>
           {/* Remove the icons from here since they'll be positioned absolutely on the sticky note */}
