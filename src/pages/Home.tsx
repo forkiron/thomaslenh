@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GridBackgroundDemo } from "../components/background/GridBackgroundDemo";
 import Profile from "../components/Profile";
 import Polaroid from "../components/Polaroid";
 import ProjectCard from "../components/ProjectCard";
 import plankbackground from "../assets/plankbackground.png";
 import visiblewood from "../assets/visiblewood.png";
+import thomas1 from "../assets/thomas1.jpg";
+import thomas2 from "../assets/thomas2.jpg";
 import email from "../assets/emailpixel.jpg";
 import linkedin from "../assets/linkedinpixel.png";
 import github from "../assets/githubpixel.png";
@@ -12,6 +14,8 @@ import github from "../assets/githubpixel.png";
 const Home = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [showWashiTapes, setShowWashiTapes] = useState(false);
 
   const handleShowProjects = () => {
     setShowProjects(true);
@@ -20,9 +24,25 @@ const Home = () => {
   const handleCloseProjects = () => {
     setShowProjects(false);
   };
+
+  // Loading animation sequence
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setIsLoading(false); // Stop rotation
+    }, 1500); // Rotate for 1.5 seconds
+
+    const timer2 = setTimeout(() => {
+      setShowWashiTapes(true); // Show washi tapes
+    }, 2000); // Show washi tapes after rotation stops
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
   return (
     <div className="fixed w-screen min-h-screen">
-      {/* Background grid */}
+      {/* bg paper */}
       <div
         className={`absolute inset-0 -z-20 transition-all duration-300 ${
           showProjects ? "blur-sm" : ""
@@ -35,11 +55,20 @@ const Home = () => {
           showProjects ? "blur-sm" : ""
         }`}
       >
-        <div className="shadow-lg -rotate-5 flex-shrink-0 ">
-          <Polaroid />
+        {/* Left Polaroid */}
+        <div className="flex-shrink-0 mr-8">
+          <Polaroid
+            image={thomas1}
+            alt="Thomas Lenh Photo 1"
+            topMargin="mt-6"
+            leftOffset="left-15"
+            rotationDegrees={isLoading ? -15 : -5}
+            translateY={isLoading ? -20 : 0}
+            shadow="shadow-lg"
+          />
         </div>
 
-        {/* Responsive profile box with sticky note icons */}
+        {/* Wood Plank - Centered */}
         <div
           className="relative flex flex-col md:flex-row
                 w-[950px] h-[700px]  
@@ -75,16 +104,27 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        <div className="shadow-lg flex-shrink-0">
-          <Polaroid />
+        {/* Right Polaroid */}
+        <div className="flex-shrink-0 ml-8">
+          <Polaroid
+            image={thomas2}
+            alt="Thomas Lenh Photo 2"
+            topMargin="mt-6"
+            rotationDegrees={isLoading ? 15 : 5}
+            translateY={isLoading ? -20 : 0}
+            shadow="shadow-lg"
+          />
         </div>
       </div>
 
-      {/* Fixed washi tape pieces - stay in place regardless of window size */}
+      {/*  washi tape pieces (left and right) respectively*/}
       <div
-        className={`absolute top-70 left-40 w-8 h-16 transform rotate-135 opacity-90 pointer-events-none transition-all duration-300 ${
+        className={`absolute top-60 left-53 w-8 h-16 transform rotate-135 pointer-events-none transition-all duration-1000 ${
           showProjects ? "blur-sm" : ""
+        } ${
+          showWashiTapes
+            ? "opacity-90 translate-x-0"
+            : "opacity-0 -translate-x-8"
         }`}
         style={{
           background:
@@ -94,8 +134,12 @@ const Home = () => {
         }}
       ></div>
       <div
-        className={`absolute w-8 h-16 transform rotate-45 opacity-90 pointer-events-none transition-all duration-300 ${
+        className={`absolute top-60 right-40 w-8 h-16 transform rotate-45 pointer-events-none transition-all duration-1000 ${
           showProjects ? "blur-sm" : ""
+        } ${
+          showWashiTapes
+            ? "opacity-90 translate-x-0"
+            : "opacity-0 translate-x-8"
         }`}
         style={{
           background:
@@ -114,18 +158,18 @@ const Home = () => {
           <div className="absolute inset-0" onClick={handleCloseProjects}></div>
 
           {/* Modal Content */}
-          <div className="relative w-200 bg-white/10 backdrop-blur-3xl rounded-xl border border-white/20 max-h-[90vh] overflow-y-auto shadow-2xl">
-            {/* Close Button */}
-            <button
-              onClick={handleCloseProjects}
-              className="absolute top-2 right-2 z-10 text-white hover:text-gray-300 text-2xl font-bold"
-            >
-              ×
-            </button>
-
-            <div className="flex gap-4 bg-white/5 backdrop-blur-sm w-full h-10 rounded-t-xl border-b border-white/10">
-              <div></div>
-              <div></div>
+          <div className="relative w-200 bg-black/30 backdrop-blur-3xl rounded-xl border border-white/20 max-h-[90vh] overflow-y-auto shadow-2xl">
+            {/* Sticky Top Bar */}
+            <div className="sticky top-0 z-20 flex items-center justify-between bg-black/20 backdrop-blur-2xl w-full h-7 rounded-t-xl border-b border-white/10 px-4">
+              {/* Apple Traffic Light Buttons */}
+              <div className="flex gap-2">
+                <button
+                  onClick={handleCloseProjects}
+                  className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors duration-200"
+                ></button>
+                <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors duration-200"></button>
+                <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors duration-200"></button>
+              </div>
               <div></div>
             </div>
 

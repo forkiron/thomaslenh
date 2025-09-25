@@ -5,3 +5,33 @@
 body {
   width: 600px;
 }
+
+/* Tape slam animation */
+@keyframes tapeSlam {
+  0% {
+    transform: translateY(-100%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20%) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* Polaroid rotation transition */
+.polaroid-rotate {
+  transition: transform 1.5s ease-in-out !important;
+}
+
+/* Ensure smooth rotation for all transform classes */
+.rotate-15,
+.-rotate-15,
+.rotate-5,
+.-rotate-5,
+.rotate-0 {
+  transition: transform 1.5s ease-in-out !important;
+}
