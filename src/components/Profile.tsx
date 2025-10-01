@@ -1,21 +1,28 @@
-import wok from "../assets/wok.gif";
+import thomas1 from "../assets/thomas1.jpg";
+import thomas2 from "../assets/thomas2.jpg";
 import uw from "../assets/uw.png";
 import scrible from "../assets/scrible.gif";
 import back from "../assets/backgroundwood.png";
 import front from "../assets/visiblewood.png";
 import banner from "../assets/banner.png";
 import { useState } from "react";
-import { globalIgnores } from "eslint/config";
 
 interface ProfileProps {
   onShowProjects: () => void;
+  showProfile: boolean;
 }
 
-const Profile = ({ onShowProjects }: ProfileProps) => {
+const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
   const [isClicked, setIsClicked] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="flex flex-col w-[750px] h-[600px] font-[Poppins] ">
+    <div
+      className={`flex flex-col w-[750px] h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
+        showProfile
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-90 translate-y-2 scale-98"
+      }`}
+    >
       <div className="flex h-50 flex-col">
         <div className="flex flex-col justify-center items-center">
           <img
@@ -35,12 +42,32 @@ const Profile = ({ onShowProjects }: ProfileProps) => {
         </div>
       </div>
       <div className="flex flex-col  gap-16 ">
-        <div className="flex items-center   justify-between">
-          <img
-            className="w-65 h-65 hover:scale-110 transition-all duration-300"
-            src={wok}
-            alt=""
-          />
+        <div className="flex items-center justify-between">
+          {/* Left Polaroid */}
+          <div className="flex-shrink-0">
+            <div className="relative bg-white p-2 shadow-lg transform rotate-[-5deg] hover:scale-110 transition-all duration-300">
+              <img
+                className="w-32 h-32 object-cover"
+                src={thomas1}
+                alt="Thomas Lenh Photo 1"
+              />
+              {/* Polaroid white border */}
+              <div className="absolute inset-0 border-4 border-white pointer-events-none"></div>
+            </div>
+          </div>
+
+          {/* Right Polaroid */}
+          <div className="flex-shrink-0">
+            <div className="relative bg-white p-2 shadow-lg transform rotate-[5deg] hover:scale-110 transition-all duration-300">
+              <img
+                className="w-32 h-32 object-cover"
+                src={thomas2}
+                alt="Thomas Lenh Photo 2"
+              />
+              {/* Polaroid white border */}
+              <div className="absolute inset-0 border-4 border-white pointer-events-none"></div>
+            </div>
+          </div>
           <div
             className="relative flex flex-col text-lg gap-2 bg-pink-200 h-48 p-4 shadow-lg transform rotate-2 transition-all duration-300 hover:scale-105 hover:rotate-1 font-[Poppins]"
             style={{
@@ -137,7 +164,7 @@ const Profile = ({ onShowProjects }: ProfileProps) => {
               onMouseEnter={() => setIsHovered(true)}
             />
             <div
-              className={`relative mb-20 ml-113 z-20 flex cursor-pointer transition-all duration-100 items-center justify-center h-full text-white font-semibold text-4xl cursor-pointer ${
+              className={`relative mb-20 ml-113 z-20 flex cursor-pointer transition-all duration-100 items-center justify-center h-full text-white font-semibold text-4xl ${
                 isHovered ? "scale-105" : ""
               }`}
               style={{

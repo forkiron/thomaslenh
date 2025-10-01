@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { GridBackgroundDemo } from "../components/background/GridBackgroundDemo";
+import { useState, useEffect } from "react";
 import Profile from "../components/Profile";
-import Polaroid from "../components/Polaroid";
 import ProjectCard from "../components/ProjectCard";
 import plankbackground from "../assets/plankbackground.png";
 import visiblewood from "../assets/visiblewood.png";
-import thomas1 from "../assets/thomas1.jpg";
-import thomas2 from "../assets/thomas2.jpg";
 import email from "../assets/emailpixel.jpg";
 import linkedin from "../assets/linkedinpixel.png";
 import github from "../assets/githubpixel.png";
+import pixelArt from "../assets/pixel-art-1.jpeg";
+import wok from "../assets/wok.gif";
 
 const Home = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [showWashiTapes, setShowWashiTapes] = useState(false);
+  const [showProfile, setShowProfile] = useState(true);
 
   const handleShowProjects = () => {
     setShowProjects(true);
@@ -27,47 +24,34 @@ const Home = () => {
 
   // Loading animation sequence
   useEffect(() => {
-    const timer1 = setTimeout(() => {
-      setIsLoading(false); // Stop rotation
-    }, 1500); // Rotate for 1.5 seconds
-
-    const timer2 = setTimeout(() => {
-      setShowWashiTapes(true); // Show washi tapes
-    }, 2000); // Show washi tapes after rotation stops
+    const timer = setTimeout(() => {
+      setShowProfile(true); // Trigger profile animation
+    }, 2000); // Show profile after 2 seconds
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearTimeout(timer);
     };
   }, []);
   return (
-    <div className="fixed w-screen min-h-screen">
-      {/* bg paper */}
+    <div className="fixed w-screen min-h-screen bg-black overflow-hidden">
+      {/* bg pixel art */}
       <div
         className={`absolute inset-0 -z-20 transition-all duration-300 ${
           showProjects ? "blur-sm" : ""
         }`}
-      >
-        <GridBackgroundDemo />
-      </div>
+        style={{
+          backgroundImage: `url(${pixelArt})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      />
       <div
         className={`flex justify-center items-center min-h-screen overflow-hidden transition-all duration-300 ${
           showProjects ? "blur-sm" : ""
         }`}
       >
-        {/* Left Polaroid */}
-        <div className="flex-shrink-0 mr-8">
-          <Polaroid
-            image={thomas1}
-            alt="Thomas Lenh Photo 1"
-            topMargin="mt-6"
-            leftOffset="left-15"
-            rotationDegrees={isLoading ? -15 : -5}
-            translateY={isLoading ? -20 : 0}
-            shadow="shadow-lg"
-          />
-        </div>
-
         {/* Wood Plank - Centered */}
         <div
           className="relative flex flex-col md:flex-row
@@ -75,7 +59,10 @@ const Home = () => {
                bg-no-repeat bg-contain bg-center justify-center items-center flex-shrink-0"
           style={{ backgroundImage: `url(${plankbackground})` }}
         >
-          <Profile onShowProjects={handleShowProjects} />
+          <Profile
+            onShowProjects={handleShowProjects}
+            showProfile={showProfile}
+          />
 
           {/* Social media icons positioned on the sticky note in bottom left */}
           <div
@@ -104,58 +91,16 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {/* Right Polaroid */}
-        <div className="flex-shrink-0 ml-8">
-          <Polaroid
-            image={thomas2}
-            alt="Thomas Lenh Photo 2"
-            topMargin="mt-6"
-            rotationDegrees={isLoading ? 15 : 5}
-            translateY={isLoading ? -20 : 0}
-            shadow="shadow-lg"
-          />
-        </div>
       </div>
-
-      {/*  washi tape pieces (left and right) respectively*/}
-      <div
-        className={`absolute top-60 left-53 w-8 h-16 transform rotate-135 pointer-events-none transition-all duration-1000 ${
-          showProjects ? "blur-sm" : ""
-        } ${
-          showWashiTapes
-            ? "opacity-90 translate-x-0"
-            : "opacity-0 -translate-x-8"
-        }`}
-        style={{
-          background:
-            "repeating-linear-gradient(45deg, #f7c61a 0, #f7c61a 5px, transparent 5px, transparent 10px, #101010 10px, #101010 15px)",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-          zIndex: 10,
-        }}
-      ></div>
-      <div
-        className={`absolute top-60 right-40 w-8 h-16 transform rotate-45 pointer-events-none transition-all duration-1000 ${
-          showProjects ? "blur-sm" : ""
-        } ${
-          showWashiTapes
-            ? "opacity-90 translate-x-0"
-            : "opacity-0 translate-x-8"
-        }`}
-        style={{
-          background:
-            "repeating-linear-gradient(45deg, #f7c61a 0, #f7c61a 5px, transparent 5px, transparent 10px, #101010 10px, #101010 15px)",
-          top: "20px",
-          left: "20px",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-          zIndex: 10,
-        }}
-      ></div>
 
       {/* Projects Modal */}
       {showProjects && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Backdrop */}
-          <div className="absolute inset-0" onClick={handleCloseProjects}></div>
+          {/* Backdrop with blur */}
+          <div
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={handleCloseProjects}
+          ></div>
 
           {/* Modal Content */}
           <div className="relative w-200 bg-black/30 backdrop-blur-3xl rounded-xl border border-white/20 max-h-[90vh] overflow-y-auto shadow-2xl">
@@ -182,7 +127,15 @@ const Home = () => {
                     Thomas Lenh
                   </p>
                 </div>
-                <div className="text-2xl h-max font-bold">phelllo </div>
+                <div className="flex items-center gap-4">
+                  <div className="text-2xl h-max font-bold">phelllo </div>
+                  {/* Wok gif in top right corner */}
+                  <img
+                    className="w-16 h-16 object-cover rounded-lg shadow-lg hover:scale-110 transition-all duration-300"
+                    src={wok}
+                    alt="Wok cooking animation"
+                  />
+                </div>
               </div>
               {/* Search bar */}
               <div className="w-130 mx-auto mt-4 px-4">
