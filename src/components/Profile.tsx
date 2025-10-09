@@ -1,3 +1,4 @@
+import { useState } from "react";
 import thomas1 from "../assets/thomas1.jpg";
 import thomas2 from "../assets/thomas2.jpg";
 import uw from "../assets/uw.png";
@@ -5,7 +6,6 @@ import scrible from "../assets/scrible.gif";
 import back from "../assets/backgroundwood.png";
 import front from "../assets/visiblewood.png";
 import banner from "../assets/banner.png";
-import { useState } from "react";
 
 interface ProfileProps {
   onShowProjects: () => void;
@@ -41,31 +41,37 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col  gap-16 ">
-        <div className="flex items-center justify-between">
-          {/* Left Polaroid */}
-          <div className="flex-shrink-0">
-            <div className="relative bg-white p-2 shadow-lg transform rotate-[-5deg] hover:scale-110 transition-all duration-300">
-              <img
-                className="w-32 h-32 object-cover"
-                src={thomas1}
-                alt="Thomas Lenh Photo 1"
-              />
-              {/* Polaroid white border */}
-              <div className="absolute inset-0 border-4 border-white pointer-events-none"></div>
+      <div className="flex flex-col">
+        <div className="flex items-center gap-25">
+          <div className="flex pl-10 gap-5 items-center">
+            {/* Left Polaroid */}
+            <div className="flex-shrink-0">
+              <div className="relative bg-white p-3 shadow-md border-1 border-gray-200 transform rotate-[-5deg] hover:scale-110 transition-all duration-300">
+                {/* Top white space  */}
+                <div className="h-0.5 bg-white"></div>
+                <img
+                  className="w-28 h-36 border-1 border-gray-400 object-cover"
+                  src={thomas1}
+                  alt="Thomas Lenh Photo 1"
+                />
+                {/* Bottom white space */}
+                <div className="h-6 bg-white"></div>
+              </div>
             </div>
-          </div>
 
-          {/* Right Polaroid */}
-          <div className="flex-shrink-0">
-            <div className="relative bg-white p-2 shadow-lg transform rotate-[5deg] hover:scale-110 transition-all duration-300">
-              <img
-                className="w-32 h-32 object-cover"
-                src={thomas2}
-                alt="Thomas Lenh Photo 2"
-              />
-              {/* Polaroid white border */}
-              <div className="absolute inset-0 border-4 border-white pointer-events-none"></div>
+            {/* Right Polaroid */}
+            <div className="flex-shrink-0">
+              <div className="relative bg-white p-3 shadow-lg transform border-gray-200 rotate-[5deg] hover:scale-110 transition-all duration-300">
+                {/* Top white space (like real polaroid) */}
+                <div className="h-0.5 bg-white"></div>
+                <img
+                  className="w-28 h-36 border-gray-400  object-cover"
+                  src={thomas2}
+                  alt="Thomas Lenh Photo 2"
+                />
+                {/* Bottom white space */}
+                <div className="h-6 bg-white"></div>
+              </div>
             </div>
           </div>
           <div
@@ -135,7 +141,6 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
               <img className="w-8 h-8" src={scrible} alt="" />
             </p>
           </div>
-          {/* Washi tape pieces - positioned outside sticky note to avoid clipping */}
         </div>
         <div>
           <div className="w-100 h-20 flex flex-col justify-center items-center">

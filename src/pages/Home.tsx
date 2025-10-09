@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Profile from "../components/Profile";
 import ProjectCard from "../components/ProjectCard";
 import plankbackground from "../assets/plankbackground.png";
-import visiblewood from "../assets/visiblewood.png";
 import email from "../assets/emailpixel.jpg";
 import linkedin from "../assets/linkedinpixel.png";
 import github from "../assets/githubpixel.png";
@@ -121,12 +120,7 @@ const Home = () => {
             {/* Main content */}
             <div className="relative z-10 p-6">
               <div className="flex items-center mt-10 justify-between">
-                <div className="">
-                  <img src={visiblewood} alt="" className="w-50 h-max" />
-                  <p className="text-xl absolute top-23 left-9 font-bold font-[merriweather]">
-                    Thomas Lenh
-                  </p>
-                </div>
+                <div className=""></div>
                 <div className="flex items-center gap-4">
                   <div className="text-2xl h-max font-bold">phelllo </div>
                   {/* Wok gif in top right corner */}
