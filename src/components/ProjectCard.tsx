@@ -1,28 +1,41 @@
-import React from "react";
-import foldercard from "../assets/foldercard.png";
-
 interface ProjectCardProps {
   title: string;
-  image?: string;
-  description?: string;
-  className?: string;
+  description: string;
+  tags: string[];
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  image = foldercard,
-  description,
-  className = "",
-}) => {
+const ProjectCard = ({ title, description, tags }: ProjectCardProps) => {
   return (
-    <div className={`flex flex-col items-center justify-center ${className}`}>
-      <img className={`w-140 h-full`} src={image} alt={title} />
-      <p className="absolute text-lg font-medium mt-4">{title}</p>
-      {description && (
-        <p className=" absolute text-sm text-gray-600 mt-20 text-center max-w-md">
-          {description}
-        </p>
-      )}
+    <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30 hover:border-yellow-400/60 transition-all duration-300">
+      <h3
+        className="text-2xl font-bold mb-4"
+        style={{
+          fontFamily: "Pixelify Sans, monospace",
+          color: "#fde68a",
+          textShadow: "black 0px 0px 1px",
+        }}
+      >
+        {title}
+      </h3>
+      <p
+        className="text-white mb-4"
+        style={{
+          fontFamily: "Pixelify Sans, monospace",
+          textShadow: "black 0px 0px 1px",
+        }}
+      >
+        {description}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag, index) => (
+          <span
+            key={index}
+            className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
