@@ -1,27 +1,12 @@
 import { useState, useEffect } from "react";
 import Profile from "../components/Profile";
-import ProjectCard from "../components/ProjectCard";
-import plankbackground from "../assets/plankbackground.png";
-import email from "../assets/emailpixel.jpg";
-import linkedin from "../assets/linkedinpixel.png";
-import github from "../assets/githubpixel.png";
 import pixelArt from "../assets/pixel-art-1.jpeg";
 import wok from "../assets/wok.gif";
 import pixeltreeload from "../assets/pixeltreeload.png";
 
 const Home = () => {
-  const [showProjects, setShowProjects] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [showProfile, setShowProfile] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleShowProjects = () => {
-    setShowProjects(true);
-  };
-
-  const handleCloseProjects = () => {
-    setShowProjects(false);
-  };
 
   // Loading animation sequence
   useEffect(() => {
@@ -38,6 +23,7 @@ const Home = () => {
       clearTimeout(timer2);
     };
   }, []);
+
   return (
     <div className="fixed w-screen min-h-screen bg-black overflow-hidden">
       {/* Loading Screen */}
@@ -57,7 +43,7 @@ const Home = () => {
             <img
               className="w-48 h-48 object-cover font-pixelify rounded-lg shadow-2xl animate-pulse"
               src={wok}
-              alt="Cooking things up..."
+              alt="Setting things up..."
             />
             <div
               className="text-white text-4xl animate-bounce"
@@ -66,7 +52,7 @@ const Home = () => {
                 textShadow: "black 0px 0px 4px",
               }}
             >
-              cooking things up...
+              Setting things up...
             </div>
           </div>
         </div>
@@ -74,9 +60,7 @@ const Home = () => {
 
       {/* bg pixel art */}
       <div
-        className={`absolute inset-0 -z-20 transition-all duration-300 ${
-          showProjects ? "blur-sm" : ""
-        }`}
+        className="absolute inset-0 -z-20 transition-all duration-300"
         style={{
           backgroundImage: `url(${pixelArt})`,
           backgroundSize: "cover",
@@ -87,124 +71,205 @@ const Home = () => {
       />
       <div
         className={`flex justify-center items-center min-h-screen overflow-hidden transition-all duration-300 ${
-          showProjects ? "blur-sm" : ""
-        } ${isLoading ? "opacity-0" : "opacity-100"}`}
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
       >
-        {/* Wood Plank - Centered */}
-        <div
-          className="relative flex flex-col md:flex-row
-                w-[950px] h-[700px]  
-               bg-no-repeat bg-contain bg-center justify-center items-center flex-shrink-0"
-          style={{ backgroundImage: `url(${plankbackground})` }}
-        >
-          <Profile
-            onShowProjects={handleShowProjects}
-            showProfile={showProfile}
-          />
+        {/* Profile - Centered */}
+        <div className="flex justify-center items-center">
+          <Profile onShowProjects={() => {}} showProfile={showProfile} />
+        </div>
+      </div>
 
-          {/* Social media icons positioned on the sticky note in bottom left */}
-          <div
-            className="absolute flex items-center gap-2"
+      {/* About Me Section */}
+      <div
+        id="about"
+        className="min-h-screen flex items-center justify-center bg-black/20"
+      >
+        <div className="text-center max-w-4xl mx-auto px-8">
+          <h2
+            className="text-6xl font-bold mb-8"
             style={{
-              bottom: "18%", // 18% of 600px
-              left: "12.2%", // 13.5% of 950px
+              fontFamily: "Pixelify Sans, monospace",
+              color: "#fde68a",
+              textShadow: "black 0px 0px 2px",
             }}
           >
-            <img
-              className="w-8 h-6 rounded-xs hover:scale-110 shadow-md transition-transform cursor-pointer"
-              src={email}
-              alt="Email"
-            />
-            <img
-              className="w-8 h-8 hover:scale-110 shadow-md rounded-lg transition-transform cursor-pointer"
-              src={linkedin}
-              alt="LinkedIn"
-            />
-            <div className="bg-white rounded-full">
-              <img
-                className="w-8 h-8 hover:scale-110 shadow-md rounded-full transition-transform cursor-pointer"
-                src={github}
-                alt="GitHub"
-              />
-            </div>
+            About Me
+          </h2>
+          <div className="space-y-6">
+            <p
+              className="text-xl text-white leading-relaxed"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              I'm a passionate mathematics student at the University of
+              Waterloo, exploring the intersection of math and technology.
+            </p>
+            <p
+              className="text-xl text-white leading-relaxed"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              I love building things, solving problems, and turning ideas into
+              reality. Currently working on exciting projects that combine my
+              mathematical background with modern web development.
+            </p>
+            <p
+              className="text-xl text-white leading-relaxed"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              When I'm not coding or studying, you can find me exploring new
+              technologies, contributing to open source projects, or sharing my
+              journey on social media.
+            </p>
+          </div>
+
+          {/* Down Arrow to Projects */}
+          <div
+            className="mt-12 cursor-pointer transition-all duration-300 animate-bounce"
+            onClick={() => {
+              const projectsSection = document.getElementById("projects");
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            style={{
+              fontFamily: "Pixelify Sans, monospace",
+              fontSize: "2rem",
+              color: "#fde68a",
+              textShadow: "black 0px 0px 2px",
+            }}
+          >
+            ▼
           </div>
         </div>
       </div>
 
-      {/* Projects Modal */}
-      {showProjects && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Backdrop with blur */}
-          <div
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-            onClick={handleCloseProjects}
-          ></div>
-
-          {/* Modal Content */}
-          <div className="relative w-200 bg-black/30 backdrop-blur-3xl rounded-xl border border-white/20 max-h-[90vh] overflow-y-auto shadow-2xl">
-            {/* Sticky Top Bar */}
-            <div className="sticky top-0 z-20 flex items-center justify-between bg-black/20 backdrop-blur-2xl w-full h-7 rounded-t-xl border-b border-white/10 px-4">
-              {/* Apple Traffic Light Buttons */}
-              <div className="flex gap-2">
-                <button
-                  onClick={handleCloseProjects}
-                  className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors duration-200"
-                ></button>
-                <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors duration-200"></button>
-                <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors duration-200"></button>
+      {/* Projects Section */}
+      <div
+        id="projects"
+        className="min-h-screen flex items-center justify-center bg-black/30"
+      >
+        <div className="text-center max-w-6xl mx-auto px-8">
+          <h2
+            className="text-6xl font-bold mb-12"
+            style={{
+              fontFamily: "Pixelify Sans, monospace",
+              color: "#fde68a",
+              textShadow: "black 0px 0px 2px",
+            }}
+          >
+            Projects
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Project Card 1 */}
+            <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30 hover:border-yellow-400/60 transition-all duration-300">
+              <h3
+                className="text-2xl font-bold mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  color: "#fde68a",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                TestEraser
+              </h3>
+              <p
+                className="text-white mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                A revolutionary tool for students to easily erase test answers
+                and reuse papers.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  React
+                </span>
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  TypeScript
+                </span>
               </div>
-              <div></div>
             </div>
 
-            {/* Main content */}
-            <div className="relative z-10 p-6">
-              <div className="flex items-center mt-10 justify-between">
-                <div className=""></div>
-                <div className="flex items-center gap-4"></div>
+            {/* Project Card 2 */}
+            <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30 hover:border-yellow-400/60 transition-all duration-300">
+              <h3
+                className="text-2xl font-bold mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  color: "#fde68a",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                Scrible Research
+              </h3>
+              <p
+                className="text-white mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                Contributing to research at Scrible, exploring new ways to
+                enhance academic research and citation management.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  Research
+                </span>
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  Academic
+                </span>
               </div>
-              {/* Search bar */}
-              <div className="w-130 mx-auto mt-4 px-4">
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="find projects..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-1 bg-black/20 rounded-md text-white focus:bg-black/30 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:border-transparent"
-                  />
-                </div>
-                <ProjectCard
-                  title="My Project"
-                  description="A brief description of your project"
-                />
-                <ProjectCard
-                  title="Project 2"
-                  description="A brief description of your project"
-                />
-                <ProjectCard
-                  title="Project 3"
-                  description="A brief description of your project"
-                />
+            </div>
+
+            {/* Project Card 3 */}
+            <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30 hover:border-yellow-400/60 transition-all duration-300">
+              <h3
+                className="text-2xl font-bold mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  color: "#fde68a",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                Portfolio Website
+              </h3>
+              <p
+                className="text-white mb-4"
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  textShadow: "black 0px 0px 1px",
+                }}
+              >
+                This pixelated portfolio showcasing my work with smooth
+                animations and modern web technologies.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  React
+                </span>
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  Tailwind
+                </span>
+                <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm">
+                  Vite
+                </span>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
