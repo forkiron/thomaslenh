@@ -76,7 +76,7 @@ const Home = () => {
       >
         {/* Profile - Centered */}
         <div className="flex justify-center items-center">
-          <Profile onShowProjects={() => {}} showProfile={showProfile} />
+          <Profile showProfile={showProfile} />
         </div>
       </div>
 

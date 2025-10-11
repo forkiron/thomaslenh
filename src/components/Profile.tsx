@@ -5,11 +5,10 @@ import linkedin from "../assets/linkedinpixel.png";
 import x from "../assets/twitterpixel.png";
 
 interface ProfileProps {
-  onShowProjects: () => void;
   showProfile: boolean;
 }
 
-const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
+const Profile = ({ showProfile }: ProfileProps) => {
   return (
     <div
       className={`flex flex-col pt-22 w-[750px] h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
