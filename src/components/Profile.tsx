@@ -2,7 +2,7 @@ import { useState } from "react";
 import thomas1 from "../assets/thomas1.jpg";
 import thomas2 from "../assets/thomas2.jpg";
 import uw from "../assets/uw.png";
-import scrible from "../assets/scrible.gif";
+import instagram from "../assets/instagrampixel.png";
 import back from "../assets/backgroundwood.png";
 import front from "../assets/visiblewood.png";
 import banner from "../assets/banner.png";
@@ -17,7 +17,7 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={`flex flex-col w-[750px] h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
+      className={`flex flex-col w-[775px]  h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
         showProfile
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-90 translate-y-2 scale-98"
@@ -111,10 +111,11 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
             <p className="text-gray-300">
               ↳ building{" "}
               <span
-                className="text-white"
+                className="text-white font-semibold"
                 style={{
                   textDecoration: "underline",
-                  textDecorationColor: "#fbbf24",
+                  textDecorationColor:
+                    "#linear-gradient(to right, #8b5cf6, #ec4899, #eab308)",
                   textDecorationThickness: "2px",
                   textUnderlineOffset: "3px",
                 }}
@@ -124,60 +125,36 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
             </p>
             <p className="text-gray-300 flex items-center">
               <div className="flex items-center gap-1.5">
-                ↳ researching for
-                <span
-                  className="text-white"
-                  style={{
-                    textDecoration: "underline",
-                    textDecorationColor: "#abd5ff",
-                    textDecorationThickness: "2px",
-                    textUnderlineOffset: "3px",
-                  }}
-                >
-                  {" "}
-                  Scrible{" "}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  ↳ Posting on
+                  <span
+                    className="text-white font-semibold relative"
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  >
+                    {" "}
+                    Instagram{" "}
+                    <div
+                      className="absolute bottom-0 left-0 w-full h-0.5"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #8b5cf6, #ec4899, #eab308)",
+                      }}
+                    ></div>
+                  </span>
+                </div>
+                <img className="w-4 h-4" src={instagram} alt="" />
               </div>
-              <img className="w-8 h-8" src={scrible} alt="" />
             </p>
           </div>
         </div>
         <div>
-          <div className="w-100 h-20 flex flex-col justify-center items-center">
-            <img
-              className={`absolute top-128 left-102 cursor-pointer transition-all duration-100 rotate-5 z-0 ${
-                isHovered ? "scale-105 left-103 top-129" : ""
-              }`}
-              src={back}
-              alt=""
-              style={{ width: "256px", height: "128px", objectFit: "cover" }}
-            />
-            <img
-              className={`absolute rotate-5 z-10 cursor-pointer transition-all duration-100 ${
-                isClicked ? "top-125 left-100" : "top-126 left-103"
-              } ${isHovered ? "scale-105 left-100 top-125 " : ""}`}
-              src={front}
-              alt=""
-              style={{ width: "256px", height: "128px", objectFit: "cover" }}
-              onMouseDown={() => setIsClicked(false)}
-              onClick={onShowProjects}
-              onMouseUp={() => setIsClicked(true)}
-              onMouseLeave={() => {
-                setIsClicked(true);
-                setIsHovered(false);
-              }}
-              onMouseEnter={() => setIsHovered(true)}
-            />
+          <div className="flex h-55 w-170 justify-end items-end">
             <div
-              className={`relative mb-20 ml-113 z-20 flex cursor-pointer transition-all duration-100 items-center justify-center h-full text-white font-semibold text-4xl ${
-                isHovered ? "scale-105" : ""
-              }`}
-              style={{
-                fontFamily: "Pixelify Sans, monospace",
-                textShadow: "black 0px 0px 2px",
-              }}
-              onClick={onShowProjects}
+              className="relative cursor-pointer transition-all duration-100 hover:scale-105"
               onMouseDown={() => setIsClicked(false)}
+              onClick={onShowProjects}
               onMouseUp={() => setIsClicked(true)}
               onMouseLeave={() => {
                 setIsClicked(true);
@@ -185,10 +162,44 @@ const Profile = ({ onShowProjects, showProfile }: ProfileProps) => {
               }}
               onMouseEnter={() => setIsHovered(true)}
             >
-              projects
+              {/* Back sticky note */}
+              <img
+                className={`relative z-0 transition-all duration-100 rotate-5 ${
+                  isHovered ? "scale-105" : ""
+                }`}
+                src={back}
+                alt=""
+                style={{ width: "256px", height: "128px", objectFit: "cover" }}
+              />
+
+              {/* Front sticky note */}
+              <img
+                className={`absolute bottom-[10px] right-[4px] z-10 transition-all duration-100 rotate-5 ${
+                  isClicked
+                    ? "translate-y-[-2px] translate-x-[-2px]"
+                    : "translate-y-0 translate-x-0"
+                } ${isHovered ? "scale-105" : ""}`}
+                src={front}
+                alt=""
+                style={{ width: "256px", height: "128px", objectFit: "cover" }}
+              />
+
+              {/* Projects text */}
+              <div
+                className={`absolute top-10 left-10 z-20 flex items-center justify-center text-white font-semibold text-4xl transition-all duration-100 ${
+                  isClicked
+                    ? "translate-y-[-2px] translate-x-[-2px]"
+                    : "translate-y-0 translate-x-0"
+                } ${isHovered ? "scale-105" : ""}`}
+                style={{
+                  fontFamily: "Pixelify Sans, monospace",
+                  textShadow: "black 0px 0px 2px",
+                }}
+              >
+                projects
+              </div>
             </div>
           </div>
-          {/* Remove the icons from here since they'll be positioned absolutely on the sticky note */}
         </div>
       </div>
     </div>

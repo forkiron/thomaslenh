@@ -7,11 +7,13 @@ import linkedin from "../assets/linkedinpixel.png";
 import github from "../assets/githubpixel.png";
 import pixelArt from "../assets/pixel-art-1.jpeg";
 import wok from "../assets/wok.gif";
+import pixeltreeload from "../assets/pixeltreeload.png";
 
 const Home = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showProfile, setShowProfile] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleShowProjects = () => {
     setShowProjects(true);
@@ -23,16 +25,53 @@ const Home = () => {
 
   // Loading animation sequence
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer1 = setTimeout(() => {
+      setIsLoading(false); // Hide loading screen
+    }, 3000); // Show loading for 3 seconds
+
+    const timer2 = setTimeout(() => {
       setShowProfile(true); // Trigger profile animation
-    }, 2000); // Show profile after 2 seconds
+    }, 3500); // Show profile after loading
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
     };
   }, []);
   return (
     <div className="fixed w-screen min-h-screen bg-black overflow-hidden">
+      {/* Loading Screen */}
+      {isLoading && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{
+            backgroundImage: `url(${pixeltreeload})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="relative z-10 flex flex-col items-center gap-6">
+            <img
+              className="w-48 h-48 object-cover font-pixelify rounded-lg shadow-2xl animate-pulse"
+              src={wok}
+              alt="Cooking things up..."
+            />
+            <div
+              className="text-white text-4xl animate-bounce"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 4px",
+              }}
+            >
+              cooking things up...
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* bg pixel art */}
       <div
         className={`absolute inset-0 -z-20 transition-all duration-300 ${
@@ -49,7 +88,7 @@ const Home = () => {
       <div
         className={`flex justify-center items-center min-h-screen overflow-hidden transition-all duration-300 ${
           showProjects ? "blur-sm" : ""
-        }`}
+        } ${isLoading ? "opacity-0" : "opacity-100"}`}
       >
         {/* Wood Plank - Centered */}
         <div
@@ -121,22 +160,14 @@ const Home = () => {
             <div className="relative z-10 p-6">
               <div className="flex items-center mt-10 justify-between">
                 <div className=""></div>
-                <div className="flex items-center gap-4">
-                  <div className="text-2xl h-max font-bold">phelllo </div>
-                  {/* Wok gif in top right corner */}
-                  <img
-                    className="w-16 h-16 object-cover rounded-lg shadow-lg hover:scale-110 transition-all duration-300"
-                    src={wok}
-                    alt="Wok cooking animation"
-                  />
-                </div>
+                <div className="flex items-center gap-4"></div>
               </div>
               {/* Search bar */}
               <div className="w-130 mx-auto mt-4 px-4">
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg
-                      className="h-5 w-5 text-white"
+                      className="h-5 w-5 text-gray-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -151,10 +182,10 @@ const Home = () => {
                   </div>
                   <input
                     type="text"
-                    placeholder="search for work, projects, etc."
+                    placeholder="find projects..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-600 rounded-lg bg-gray-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                    className="block w-full pl-10 pr-3 py-1 bg-black/20 rounded-md text-white focus:bg-black/30 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:border-transparent"
                   />
                 </div>
                 <ProjectCard
