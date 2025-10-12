@@ -1,14 +1,39 @@
+import { useState, useEffect } from "react";
 import uw from "../assets/uw.png";
 import instagram from "../assets/instagrampixel.png";
 import github from "../assets/githubpixel.png";
 import linkedin from "../assets/linkedinpixel.png";
 import x from "../assets/twitterpixel.png";
+import DownArrow from "./DownArrow";
+import test from "../assets/testbg.png";
 
 interface ProfileProps {
   showProfile: boolean;
 }
 
 const Profile = ({ showProfile }: ProfileProps) => {
+  const [showArrow, setShowArrow] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.getElementById("about");
+
+      if (aboutSection) {
+        const aboutRect = aboutSection.getBoundingClientRect();
+
+        // Hide arrow when about section comes into view
+        if (aboutRect.top < window.innerHeight * 0.7) {
+          setShowArrow(false);
+        } else {
+          setShowArrow(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       className={`flex flex-col pt-22 w-[750px] h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
@@ -87,25 +112,14 @@ const Profile = ({ showProfile }: ProfileProps) => {
             <img src={x} alt="x" className="w-8 h-8" />
           </a>
         </div>
-        {/* Pixelated Down Arrow */}
+        {/* Dynamic Down Arrow */}
       </div>
       <div className="flex w-full justify-center items-center">
-        <div
-          className="bottom-0 cursor-pointer transition-all duration-300 opacity-70 hover:opacity-90 animate-bounce"
-          onClick={() => {
-            const aboutSection = document.getElementById("about");
-            if (aboutSection) {
-              aboutSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-          style={{
-            fontFamily: "Pixelify Sans, monospace",
-            fontSize: "2rem",
-            color: "#ffffff",
-          }}
-        >
-          ▼
-        </div>
+        <DownArrow
+          targetId="about"
+          isVisible={showArrow}
+          onArrowClick={() => setShowArrow(false)}
+        />
       </div>
     </div>
   );
