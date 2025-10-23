@@ -59,6 +59,49 @@ const Profile = ({ showProfile }: ProfileProps) => {
           >
             hi, im thomas!
           </p>
+
+          {/* Navigation Bar */}
+          <div className="flex gap-8 pt-4 pb-2">
+            <button
+              className="text-pink-400 border-b-2 border-pink-400 pb-1 transition-all duration-300 cursor-pointer"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              Home
+            </button>
+            <button
+              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              About
+            </button>
+            <button
+              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              Works
+            </button>
+            <button
+              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+              style={{
+                fontFamily: "Pixelify Sans, monospace",
+                textShadow: "black 0px 0px 1px",
+              }}
+            >
+              Photos
+            </button>
+          </div>
+
+          {/* Dividing Line */}
+          <div className="w-full h-px bg-gray-600 mt-2 mb-4"></div>
         </div>
         <div
           className="flex text-white text-2xl pt-3 justify-center items-center  gap-2"
@@ -69,7 +112,30 @@ const Profile = ({ showProfile }: ProfileProps) => {
         >
           <p>studying math</p>
 
-          <p>@university of waterloo</p>
+          <a
+            href="https://uwaterloo.ca"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+            style={{
+              background: `
+                linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))
+              `,
+              backgroundSize: "100% 0.1em, 0 0.1em",
+              backgroundPosition: "100% 100%, 0 100%",
+              backgroundRepeat: "no-repeat",
+              transition: "background-size 800ms ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundSize = "0 0.1em, 100% 0.1em";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundSize = "100% 0.1em, 0 0.1em";
+            }}
+          >
+            @university of waterloo
+          </a>
           <img src={uw} alt="uw" className="w-6 h-6" />
         </div>
         {/* Logos */}

@@ -32,25 +32,25 @@ const Projects = () => {
       title: "TestEraser",
       description:
         "A tool for students to easily erase test answers and reuse papers.",
-      tags: ["React", "TypeScript", "TensorFlow", "Python"],
+      image: "/src/assets/foldercard.png",
     },
     {
       title: "Scrible",
       description:
         "Scrible helps individuals with tremors and similar conditions by transcribing their handwriting and reintegrating it into a digital notepad.",
-      tags: ["Tensorflow", "Flask", "Python", "React Native"],
+      image: "/src/assets/scriblepage.png",
+    },
+    {
+      title: "iSpy",
+      description:
+        "iSpy is a Chrome extension that helps users detect AI-generated media with a single click, empowering artists to protect their work and preserve authenticity.",
+      image: "/src/assets/pixel-art-1.jpeg",
     },
     {
       title: "Portfolio Website",
       description:
         "This pixelated portfolio showcasing my work with smooth animations and modern web technologies.",
-      tags: ["React", "Tailwind", "Vite"],
-    },
-    {
-      title: "Portfolio Website",
-      description:
-        "This pixelated portfolio showcasing my work with smooth animations and modern web technologies.",
-      tags: ["React", "Tailwind", "Vite"],
+      image: "/src/assets/backgroundwood.png",
     },
   ];
 
@@ -86,7 +86,7 @@ const Projects = () => {
               key={index}
               title={project.title}
               description={project.description}
-              tags={project.tags}
+              image={project.image}
             />
           ))}
         </div>

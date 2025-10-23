@@ -1,40 +1,47 @@
 interface ProjectCardProps {
   title: string;
   description: string;
-  tags: string[];
+  image: string;
 }
 
-const ProjectCard = ({ title, description, tags }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, image }: ProjectCardProps) => {
   return (
-    <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30 hover:border-yellow-400/60 transition-all duration-300">
-      <h3
-        className="text-2xl font-bold mb-4"
+    <div className="relative rounded-lg overflow-hidden  transition-all duration-300 hover:scale-105">
+      {/* Background Image */}
+      <div
+        className="w-full h-48 bg-cover bg-center transition-all duration-500 ease-out hover:h-52"
         style={{
-          fontFamily: "Pixelify Sans, monospace",
-          color: "#fde68a",
-          textShadow: "black 0px 0px 1px",
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-white mb-4"
-        style={{
-          fontFamily: "Pixelify Sans, monospace",
-          textShadow: "black 0px 0px 1px",
-        }}
-      >
-        {description}
-      </p>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag, index) => (
-          <span
-            key={index}
-            className="px-3 py-1 bg-yellow-400/20 text-yellow-300 rounded text-sm"
-          >
-            {tag}
-          </span>
-        ))}
+      />
+
+      {/* Darker overlay with content */}
+      <div className="bg-black/70 backdrop-blur-sm p-4">
+        <h3
+          className="text-xl font-bold mb-2"
+          style={{
+            fontFamily:
+              "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            color: "#ffffff",
+            fontWeight: "700",
+            letterSpacing: "-0.025em",
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          className="text-gray-300 text-sm leading-relaxed"
+          style={{
+            fontFamily:
+              "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontWeight: "400",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {description}
+        </p>
       </div>
     </div>
   );

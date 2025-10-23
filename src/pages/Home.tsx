@@ -27,21 +27,21 @@ const Home = () => {
   }, []);
 
   return (
-    <div
+      <div
       className="w-screen min-h-screen"
-      style={{
-        backgroundImage: `url(${pixelArt})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
+        style={{
+          backgroundImage: `url(${pixelArt})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
     >
       {/* Loading Screen */}
       {isLoading && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{
+            style={{
             backgroundImage: `url(${pixeltreeload})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
