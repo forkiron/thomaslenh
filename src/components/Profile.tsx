@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import uw from "../assets/uw.png";
 import instagram from "../assets/instagrampixel.png";
 import github from "../assets/githubpixel.png";
@@ -13,14 +14,14 @@ interface ProfileProps {
 
 const Profile = ({ showProfile }: ProfileProps) => {
   const [showArrow, setShowArrow] = useState(true);
+  const location = useLocation();
+  const pathname = location.pathname;
 
   useEffect(() => {
     const handleScroll = () => {
       const aboutSection = document.getElementById("about");
-
       if (aboutSection) {
         const aboutRect = aboutSection.getBoundingClientRect();
-
         // Hide arrow when about section comes into view
         if (aboutRect.top < window.innerHeight * 0.7) {
           setShowArrow(false);
@@ -31,6 +32,8 @@ const Profile = ({ showProfile }: ProfileProps) => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Call once on mount to set initial arrow state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,7 +42,7 @@ const Profile = ({ showProfile }: ProfileProps) => {
       className={`flex flex-col pt-22 w-[750px] h-[600px] font-[Poppins] transition-all duration-1000 ease-out ${
         showProfile
           ? "opacity-100 translate-y-0 scale-100"
-          : "opacity-90 translate-y-2 scale-98"
+          : "opacity-90 translate-y-2 scale-100"
       }`}
     >
       <div className="flex h-full items-center flex-col">
@@ -59,49 +62,132 @@ const Profile = ({ showProfile }: ProfileProps) => {
           >
             hi, im thomas!
           </p>
+          {/* Dividing Line */}
+          <div className="w-full h-[2px] bg-white opacity-25 mt-2 mb-6"></div>
 
           {/* Navigation Bar */}
           <div className="flex gap-8 pt-4 pb-2">
-            <button
-              className="text-pink-400 border-b-2 border-pink-400 pb-1 transition-all duration-300 cursor-pointer"
+            <Link
+              to="/"
+              className="pb-1 cursor-pointer transition-opacity duration-300"
               style={{
                 fontFamily: "Pixelify Sans, monospace",
                 textShadow: "black 0px 0px 1px",
+                color:
+                  pathname === "/"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(156, 163, 175, 0.4)",
+                opacity: pathname === "/" ? 1 : 0.4,
+                background: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))
+                `,
+                backgroundSize: "100% 0.1em, 0 0.1em",
+                backgroundPosition: "100% 100%, 0 100%",
+                backgroundRepeat: "no-repeat",
+                transition:
+                  "background-size 800ms ease-in-out, opacity 300ms ease-in-out, color 300ms ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundSize = "0 0.1em, 100% 0.1em";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundSize = "100% 0.1em, 0 0.1em";
               }}
             >
               Home
-            </button>
-            <button
-              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+            </Link>
+            <Link
+              to="/about"
+              className="pb-1 cursor-pointer transition-opacity duration-300"
               style={{
                 fontFamily: "Pixelify Sans, monospace",
                 textShadow: "black 0px 0px 1px",
+                color:
+                  pathname === "/about"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(156, 163, 175, 0.4)",
+                opacity: pathname === "/about" ? 1 : 0.4,
+                background: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))
+                `,
+                backgroundSize: "100% 0.1em, 0 0.1em",
+                backgroundPosition: "100% 100%, 0 100%",
+                backgroundRepeat: "no-repeat",
+                transition:
+                  "background-size 800ms ease-in-out, opacity 300ms ease-in-out, color 300ms ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundSize = "0 0.1em, 100% 0.1em";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundSize = "100% 0.1em, 0 0.1em";
               }}
             >
               About
-            </button>
-            <button
-              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+            </Link>
+            <Link
+              to="/works"
+              className="pb-1 cursor-pointer transition-opacity duration-300"
               style={{
                 fontFamily: "Pixelify Sans, monospace",
                 textShadow: "black 0px 0px 1px",
+                color:
+                  pathname === "/works"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(156, 163, 175, 0.4)",
+                opacity: pathname === "/works" ? 1 : 0.4,
+                background: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))
+                `,
+                backgroundSize: "100% 0.1em, 0 0.1em",
+                backgroundPosition: "100% 100%, 0 100%",
+                backgroundRepeat: "no-repeat",
+                transition:
+                  "background-size 800ms ease-in-out, opacity 300ms ease-in-out, color 300ms ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundSize = "0 0.1em, 100% 0.1em";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundSize = "100% 0.1em, 0 0.1em";
               }}
             >
               Works
-            </button>
-            <button
-              className="text-gray-400 border-b border-gray-600 pb-1 hover:text-white hover:border-gray-400 transition-all duration-300 cursor-pointer"
+            </Link>
+            <Link
+              to="/photos"
+              className="pb-1 cursor-pointer transition-opacity duration-300"
               style={{
                 fontFamily: "Pixelify Sans, monospace",
                 textShadow: "black 0px 0px 1px",
+                color:
+                  pathname === "/photos"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(156, 163, 175, 0.4)",
+                opacity: pathname === "/photos" ? 1 : 0.4,
+                background: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))
+                `,
+                backgroundSize: "100% 0.1em, 0 0.1em",
+                backgroundPosition: "100% 100%, 0 100%",
+                backgroundRepeat: "no-repeat",
+                transition:
+                  "background-size 800ms ease-in-out, opacity 300ms ease-in-out, color 300ms ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundSize = "0 0.1em, 100% 0.1em";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundSize = "100% 0.1em, 0 0.1em";
               }}
             >
               Photos
-            </button>
+            </Link>
           </div>
-
-          {/* Dividing Line */}
-          <div className="w-full h-px bg-gray-600 mt-2 mb-4"></div>
         </div>
         <div
           className="flex text-white text-2xl pt-3 justify-center items-center  gap-2"
