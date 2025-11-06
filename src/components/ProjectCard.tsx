@@ -1,21 +1,66 @@
+import { useEffect, useRef } from "react";
+
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  video?: string;
 }
 
-const ProjectCard = ({ title, description, image }: ProjectCardProps) => {
+const ProjectCard = ({
+  title,
+  description,
+  image,
+  video,
+}: ProjectCardProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!video || !videoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoRef.current?.play();
+          } else {
+            videoRef.current?.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(videoRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [video]);
+
   return (
     <div className="relative rounded-lg overflow-hidden  transition-all duration-300 hover:scale-105">
-      {/* Background Image */}
-      <div
-        className="w-full h-48 bg-cover bg-center transition-all duration-500 ease-out hover:h-52"
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      {/* Background Image or Video */}
+      {video ? (
+        <video
+          ref={videoRef}
+          className="w-full h-80 object-cover transition-all duration-500 ease-out hover:h-90"
+          loop
+          muted
+          playsInline
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          className="w-full h-80 bg-cover bg-center transition-all duration-500 ease-out hover:h-90"
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      )}
 
       {/* Darker overlay with content */}
       <div className="bg-black/70 backdrop-blur-sm p-4">

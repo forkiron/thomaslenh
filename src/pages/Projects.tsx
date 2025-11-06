@@ -1,4 +1,5 @@
 import ProjectCard from "../components/ProjectCard";
+import trimmedscrible from "../assets/trimmedscrible.mp4";
 
 const Projects = () => {
   const projects = [
@@ -18,7 +19,7 @@ const Projects = () => {
       title: "iSpy",
       description:
         "iSpy is a Chrome extension that helps users detect AI-generated media with a single click, empowering artists to protect their work and preserve authenticity.",
-      image: "/src/assets/pixel-art-1.jpeg",
+      video: trimmedscrible,
     },
     {
       title: "Portfolio Website",
@@ -47,6 +48,7 @@ const Projects = () => {
                     title={project.title}
                     description={project.description}
                     image={project.image}
+                    video={project.video}
                   />
                 </div>
               ))}
