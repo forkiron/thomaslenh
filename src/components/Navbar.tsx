@@ -5,13 +5,13 @@ const Navbar = () => {
   const pathname = location.pathname;
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center pt-10 lg:pt-0 md:pt-0 w-full">
       <div className="w-full max-w-[600px] mx-auto px-4">
         {/* Mobile: Stacked vertically, Desktop: Horizontal with name left, nav right */}
         <div className="flex flex-col md:flex-row items-center md:items-center md:justify-between mt-4 md:mt-20 w-full">
           {/* Name */}
           <p
-            className="font-bold text-2xl md:text-4xl mb-2 md:mb-0"
+            className="font-bold text-4xl md:text-4xl mb-2 md:mb-0"
             style={{
               fontFamily: "Pixelify Sans, monospace",
               background:
@@ -26,7 +26,7 @@ const Navbar = () => {
             hi, im thomas!
           </p>
           {/* Navigation Bar */}
-          <div className="flex gap-3 md:gap-8 items-center text-sm md:text-base">
+          <div className="flex gap-8 md:gap-8 items-center text-sm md:text-base">
             <Link
               to="/"
               className="pb-1 cursor-pointer transition-opacity duration-300"
@@ -149,8 +149,10 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        {/* Divider line */}
-        <div className="w-full max-w-[148px] md:w-148 h-[2px] bg-white opacity-75 mt-2 md:mt-2 mb-2 md:mb-6 mx-auto"></div>
+      </div>
+      {/* Divider line: mobile full screen with padding, desktop fixed width */}
+      <div className="lg:w-145 md:w-145 w-80 md:pt-7 lg:pt-7 pt-4 px-4  md:px-0 md:mx-auto">
+        <div className="w-full h-[2px] bg-white opacity-75 mt-2 mb-2 md:mb-6"></div>
       </div>
     </div>
   );

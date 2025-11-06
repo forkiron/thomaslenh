@@ -8,14 +8,14 @@ import thomas2 from "../assets/thomas2.jpg";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-start min-h-[calc(100vh-80px)] pt-2 md:pt-4 w-full">
+    <div className="flex flex-col items-center justify-start min-h-[calc(100vh-80px)] md:pt-4 lg:pt-4 w-full">
       {/* Content below navbar */}
       <div className="w-full max-w-[600px] mx-auto px-4">
         <div className="flex items-center flex-col justify-center">
-          <div className="flex items-center justify-center py-2 md:py-10 flex-wrap gap-2 md:gap-4">
+          <div className="flex items-center justify-center py-25 md:py-10 lg:py-10 flex-wrap gap-2 md:gap-4">
             {/* Polaroid 1 */}
             <div
-              className="p-1 md:p-2 shadow-lg polaroid-rotate -rotate-5 relative overflow-hidden"
+              className=" p-2 shadow-lg polaroid-rotate -rotate-5 relative overflow-hidden"
               style={{
                 transform: "rotate(-5deg)",
                 background:
@@ -35,11 +35,11 @@ const Home = () => {
               <img
                 src={thomas2}
                 alt="Thomas"
-                className="w-32 h-40 md:w-[148px] md:h-[185px] pt-1 pb-2 md:pt-2 md:pb-5 object-cover relative z-10"
+                className="w-40 h-58 pt-2 pb-5 object-cover relative z-10"
               />
             </div>
             <div
-              className="p-1 md:p-2 shadow-lg polaroid-rotate rotate-5 relative overflow-hidden"
+              className="p-2 shadow-lg polaroid-rotate rotate-5 relative overflow-hidden"
               style={{
                 transform: "rotate(5deg)",
                 background:
@@ -59,14 +59,14 @@ const Home = () => {
               <img
                 src={thomas1}
                 alt="Thomas"
-                className="w-32 h-40 md:w-[148px] md:h-[185px] pt-1 pb-2 md:pt-2 md:pb-5 object-cover relative z-10"
+                className="w-40 h-58 pt-2 pb-5 object-cover relative z-10"
               />
             </div>
 
             {/* Polaroid 2 */}
           </div>
           <div
-            className="flex text-white text-base md:text-2xl pt-1 md:pt-3 justify-center items-center gap-1 md:gap-2 flex-wrap"
+            className="flex text-white text-xl md:text-2xl pt-1 md:pt-3 justify-center items-center gap-1 py-3 lg:py-0 md:py-0 md:gap-2 flex-wrap"
             style={{
               fontFamily: "Pixelify Sans, monospace",
               textShadow: "black 0px 0px 1px",
@@ -101,18 +101,14 @@ const Home = () => {
             <img src={uw} alt="uw" className="w-5 h-5 md:w-6 md:h-6" />
           </div>
           {/* Logos */}
-          <div className="flex justify-center items-center gap-4 md:gap-7 pt-4 md:pt-9">
+          <div className="flex justify-center items-center gap-7 md:gap-10 pt-4 md:pt-9">
             <a
               href="https://www.instagram.com/whattheforky/"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer hover:scale-110 transition-all duration-300"
             >
-              <img
-                src={instagram}
-                alt="instagram"
-                className="w-6 h-6 md:w-8 md:h-8"
-              />
+              <img src={instagram} alt="instagram" className="w-8 h-8" />
             </a>
 
             <a
@@ -122,11 +118,7 @@ const Home = () => {
               className="cursor-pointer hover:scale-110 transition-all duration-300"
             >
               <div className="bg-white rounded-full">
-                <img
-                  src={github}
-                  alt="github"
-                  className="w-6 h-6 md:w-8 md:h-8"
-                />
+                <img src={github} alt="github" className="w-8 h-8" />
               </div>
             </a>
 
@@ -136,11 +128,7 @@ const Home = () => {
               rel="noopener noreferrer"
               className="cursor-pointer hover:scale-110 transition-all duration-300"
             >
-              <img
-                src={linkedin}
-                alt="linkedin"
-                className="w-6 h-6 md:w-8 md:h-8"
-              />
+              <img src={linkedin} alt="linkedin" className="w-8 h-8" />
             </a>
 
             <a
@@ -149,7 +137,7 @@ const Home = () => {
               rel="noopener noreferrer"
               className="cursor-pointer hover:scale-110 transition-all duration-300"
             >
-              <img src={x} alt="x" className="w-6 h-6 md:w-8 md:h-8" />
+              <img src={x} alt="x" className="w-8 h-8" />
             </a>
           </div>
         </div>
