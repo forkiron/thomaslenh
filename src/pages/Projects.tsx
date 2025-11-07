@@ -1,5 +1,6 @@
 import ProjectCard from "../components/ProjectCard";
-import trimmedscrible from "../assets/trimmedscrible.mp4";
+import ispy from "../assets/ispy.mp4";
+import scrible from "../assets/scrible.mp4";
 
 const Projects = () => {
   const projects = [
@@ -13,13 +14,13 @@ const Projects = () => {
       title: "Scrible",
       description:
         "Scrible helps individuals with tremors and similar conditions by transcribing their handwriting and reintegrating it into a digital notepad.",
-      image: "/src/assets/scriblepage.png",
+      video: scrible,
     },
     {
       title: "iSpy",
       description:
         "iSpy is a Chrome extension that helps users detect AI-generated media with a single click, empowering artists to protect their work and preserve authenticity.",
-      video: trimmedscrible,
+      video: ispy,
     },
     {
       title: "Portfolio Website",
