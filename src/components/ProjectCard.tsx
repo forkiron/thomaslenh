@@ -5,6 +5,7 @@ interface ProjectCardProps {
   description: string;
   image?: string;
   video?: string;
+  icon?: string;
 }
 
 const ProjectCard = ({
@@ -12,6 +13,7 @@ const ProjectCard = ({
   description,
   image,
   video,
+  icon,
 }: ProjectCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -39,12 +41,12 @@ const ProjectCard = ({
   }, [video]);
 
   return (
-    <div className="relative rounded-lg overflow-hidden  transition-all duration-300 hover:scale-105">
+    <div className="relative rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 max-w-full md:max-w-none">
       {/* Background Image or Video */}
       {video ? (
         <video
           ref={videoRef}
-          className="w-full h-80 object-cover transition-all duration-500 ease-out hover:h-90"
+          className="w-full h-40 md:h-60 object-cover transition-all duration-500 ease-out md:hover:h-65"
           loop
           muted
           playsInline
@@ -53,7 +55,7 @@ const ProjectCard = ({
         </video>
       ) : (
         <div
-          className="w-full h-80 bg-cover bg-center transition-all duration-500 ease-out hover:h-90"
+          className="w-full h-40 md:h-60 bg-cover bg-center transition-all duration-500 ease-out md:hover:h-65"
           style={{
             backgroundImage: `url(${image})`,
             backgroundSize: "cover",
@@ -63,9 +65,9 @@ const ProjectCard = ({
       )}
 
       {/* Darker overlay with content */}
-      <div className="bg-black/70 backdrop-blur-sm p-4">
+      <div className="bg-black/70 backdrop-blur-sm p-2 md:p-4">
         <h3
-          className="text-xl font-bold mb-2"
+          className="text-lg md:text-2xl font-semibold px-1 mb-1 md:mb-2 flex justify-between"
           style={{
             fontFamily:
               "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -74,10 +76,21 @@ const ProjectCard = ({
             letterSpacing: "-0.025em",
           }}
         >
-          {title}
+          <span>{title}</span>
+          {icon && (
+            <img
+              src={icon}
+              alt={`${title} icon`}
+              className={`ml-2 ${
+                title === "Scrible"
+                  ? "h-4 w-auto md:h-6"
+                  : "w-5 h-5 md:w-8 md:h-8"
+              }`}
+            />
+          )}
         </h3>
         <p
-          className="text-gray-300 text-sm leading-relaxed"
+          className="text-gray-300 text-xs md:text-sm font-extralight px-1 leading-relaxed text-left"
           style={{
             fontFamily:
               "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
