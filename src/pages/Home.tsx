@@ -8,7 +8,7 @@ import thomas2 from "../assets/thomas2.jpg";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-start min-h-[calc(100vh-80px)] md:pt-4 lg:pt-4 w-full">
+    <div className="flex flex-col items-center justify-start min-h-[calc(100vh-80px)] pt-4 md:pt-4 lg:pt-4 w-full pb-8 md:pb-0">
       {/* Content below navbar */}
       <div className="w-full max-w-[600px] mx-auto px-4">
         <div className="flex items-center flex-col justify-center">

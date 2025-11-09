@@ -5,7 +5,7 @@ import pixelArt from "../assets/pixel-art-1.jpeg";
 const Layout = () => {
   return (
     <div
-      className="w-screen min-h-screen"
+      className="w-screen min-h-screen md:h-screen"
       style={{
         backgroundImage: `url(${pixelArt})`,
         backgroundSize: "cover",

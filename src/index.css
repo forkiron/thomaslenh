@@ -4,24 +4,36 @@
 
 body {
   width: 100%;
-  overflow: hidden;
-  height: 100vh;
   margin: 0;
   padding: 0;
 }
 
 html {
-  overflow: hidden;
-  height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
 #root {
-  height: 100vh;
   width: 100%;
-  overflow: hidden;
+}
+
+/* On larger screens, restrict height and prevent overflow */
+@media (min-width: 768px) {
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  html {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #root {
+    height: 100vh;
+    overflow: hidden;
+  }
 }
 
 /* Tape slam animation */

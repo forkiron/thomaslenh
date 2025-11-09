@@ -23,7 +23,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="h-[calc(100vh-80px)] overflow-y-auto w-full">
+    <div className="min-h-[calc(100vh-80px)] md:h-[calc(100vh-80px)] md:overflow-y-auto w-full">
       {/* Projects Content */}
       <div className="flex items-center justify-center relative pb-32 pt-10 w-full">
         <div className="absolute inset-0 "></div>

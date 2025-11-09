@@ -2,7 +2,7 @@ import wok from "../assets/wok.gif";
 
 const About = () => {
   return (
-    <div className="min-h-[calc(100vh-80px)] pt-10 w-full">
+    <div className="min-h-[calc(100vh-80px)] pt-10 pb-8 md:pb-0 w-full">
       {/* About Content */}
       <div className="flex items-center justify-center relative pt-10 w-full">
         <div className="absolute inset-0"></div>
